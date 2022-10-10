@@ -71,28 +71,23 @@ public class Product implements Serializable{
 	private ProductDetails productdetails;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
 	public List<ProductImage> productImages;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
 	public List<ProductDiscount> productDiscount;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER )
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL )
 	public List<OrderDetail> orderDetails;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER )
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
 	public List<ProductComment> productComments;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER )
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
 	public List<ProductWishList> productWishList;
-	
-	@JsonIgnore
-	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	public List<ProductRate> productRate;
-	
-	
+		
 }

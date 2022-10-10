@@ -57,5 +57,9 @@ public class Account implements Serializable{
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL)	
-	private List<Order> orders;
+	public List<Order> orders;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL)	
+	public List<ProductRate> productRates;
 }

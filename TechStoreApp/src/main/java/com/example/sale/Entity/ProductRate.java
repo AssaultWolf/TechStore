@@ -35,7 +35,7 @@ public class ProductRate implements Serializable{
 	@Column(name = "Rating")
 	private Integer rating;
 	
-	@Column(name = "ProductId") 
+	@Column(name = "Productid") 
 	private Integer productId;
 	
 	@Column(name = "Username")
@@ -46,6 +46,6 @@ public class ProductRate implements Serializable{
 	private Product product;
 	
 	@ManyToOne
-	@JoinColumn(name = "Username")
-	private User user;
+	@JoinColumn(name = "username")
+	private Account account;
 }

@@ -43,7 +43,7 @@ public class ProductWishList implements Serializable{
 	private Integer productId;
 	
 	@ManyToOne
-	@JoinColumn(name = "UserName")
+	@JoinColumn(name = "username")
 	private User user;
 	
 	@ManyToOne

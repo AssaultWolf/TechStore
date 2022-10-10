@@ -70,7 +70,7 @@ public class Order implements Serializable{
 	private OrderStatus orderMethod;
 	
 	@ManyToOne
-	@JoinColumn(name = "Username")
+	@JoinColumn(name = "username")
 	private Account account;
 	
 	@JsonIgnore
