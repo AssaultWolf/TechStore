@@ -44,13 +44,13 @@ public class Products implements Serializable {
     @Column(name = "id")
     private Integer id;
 
-    
-
     @Column(name = "name")
     private String name;
+    
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "currentprice")
     private Double currentprice;
+    
     @Column(name = "createddate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createddate;
@@ -58,24 +58,33 @@ public class Products implements Serializable {
     
     @Column(name = "isdeleted")
     private boolean isdeleted;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productid")
     private Collection<Productwishlists> productwishlistsCollection;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productid")
     private Collection<Productdiscounts> productdiscountsCollection;
+    
     @JoinColumn(name = "brandid", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Brands brandid;
+    
     @JoinColumn(name = "categoryid", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Categories categoryid;
+    
     @OneToMany(mappedBy = "productid")
     private Collection<Productdetails> productdetailsCollection;
+    
     @OneToMany(mappedBy = "productid")
     private Collection<Productimages> productimagesCollection;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productid")
     private Collection<Productrates> productratesCollection;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productid")
     private Collection<Orderdetails> orderdetailsCollection;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productid")
     private Collection<Productcomments> productcommentsCollection;
 //

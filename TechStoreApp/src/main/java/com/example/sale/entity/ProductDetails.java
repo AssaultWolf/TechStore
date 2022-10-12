@@ -36,26 +36,37 @@ public class Productdetails implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
+    
     @Column(name = "key01")
     private String key01;
+    
     @Column(name = "key02")
     private String key02;
+    
     @Column(name = "key03")
     private String key03;
+    
     @Column(name = "key04")
     private String key04;
+    
     @Column(name = "key05")
     private String key05;
+    
     @Column(name = "key06")
     private String key06;
+    
     @Column(name = "key07")
     private String key07;
+    
     @Column(name = "key08")
     private String key08;
+    
     @Column(name = "key09")
     private String key09;
+    
     @Column(name = "key10")
     private String key10;
+    
     @JoinColumn(name = "productid", referencedColumnName = "id")
     @ManyToOne
     private Products productid;

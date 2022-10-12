@@ -12,15 +12,15 @@ import com.example.sale.entity.Products;
 @Repository
 public interface ProductDao extends JpaRepository<Products, Integer>{
 	
-//	@Query("SELECT new com.example.sale.dto.ProductDto( "
-//			+ "p.id, p.name, p.currentPrice, p.createdDate, c.id, "
-//			+ "c.name, min(pi.name), pd.discount, pd.endDate, AVG(pr.rating) "
-//			+ ") FROM Product p "
-//			+ "INNER JOIN p.productImages pi "
-//			+ "INNER JOIN p.category c "
-//			+ "FULL JOIN p.productDiscounts pd "
-//			+ "FULL JOIN p.productRates pr "
-//			+ "GROUP BY p.id, p.name, p.currentPrice, p.createdDate, c.id, "
-//			+ "c.name, pd.discount, pd.endDate")
-//	public List<ProductDto> findAllProduct();
+	@Query("SELECT new com.example.sale.dto.ProductDto( "
+			+ "p.id, p.name, p.currentprice, p.createddate, c.id, "
+			+ "c.name, min(pi.name), pd.discount, pd.enddate, AVG(pr.rating) "
+			+ ") FROM Products p "
+			+ "INNER JOIN p.productimagesCollection pi "
+			+ "INNER JOIN p.categoryid c "
+			+ "FULL JOIN p.productdiscountsCollection pd "
+			+ "FULL JOIN p.productratesCollection pr "
+			+ "GROUP BY p.id, p.name, p.currentprice, p.createddate, c.id, "
+			+ "c.name, pd.discount, pd.enddate")
+	public List<ProductDto> findAllProduct();
 }
