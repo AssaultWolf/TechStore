@@ -1,5 +1,12 @@
 package com.example.sale.service;
 
-public interface BrandService {
+import java.util.List;
 
+import com.example.sale.entity.Brands;
+
+public interface BrandService {
+	
+	public List<Brands> findAll();
+	
+	public Brands findById(Integer id);
 }

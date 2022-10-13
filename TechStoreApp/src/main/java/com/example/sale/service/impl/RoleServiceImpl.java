@@ -6,5 +6,5 @@ import com.example.sale.service.RoleService;
 
 @Service
 public class RoleServiceImpl implements RoleService {
-
+	
 }

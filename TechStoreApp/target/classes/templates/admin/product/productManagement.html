@@ -2,16 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{/admin/layout/index.html :: dynamic(~{::main})}">
 <body>
 	<main>
-		<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-			<li class="nav-item" role="presentation">
-				<button class="nav-link active" id="pills-home-tab" data-toggle="pill" data-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Home</button>
-			</li>
-			<li class="nav-item" role="presentation">
-				<button class="nav-link" id="pills-profile-tab" data-toggle="pill" data-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</button>
-			</li>
-		</ul>
-		<div class="tab-content" id="pills-tabContent">
-			<div class="tab-pane fadeshow active pt-1" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+		<nav>
+			<div class="nav nav-tabs" id="nav-tab" role="tablist">
+				<a class="nav-link " th:classappend="${isHomeProduct} == 'tab1' ? 'active' : ''" id="nav-home-tab" data-toggle="tab" data-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Product List</a>
+				<a class="nav-link " th:classappend="${isHomeProduct} == 'tab2' ? 'active' : ''" id="nav-profile-tab" data-toggle="tab" data-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Product Detail</a>
+			</div>
+		</nav>
+		<div class="tab-content container" id="nav-tabContent">
+			<!-- ------------------------- -->
+			<div class="tab-pane fade container-fluid " th:classappend="${isHomeProduct} == 'tab1' ? 'show active' : ''" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 				<div class="col-12">
 					<div class="card my-4">
 						<div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
@@ -19,9 +18,9 @@
 								<h6 class="text-white text-capitalize ps-3">Product List</h6>
 							</div>
 						</div>
-						<div class="card-body px-0 pb-2">
+						<div class="card-body px-0 pb-2" style="min-height: 307px">
 							<div class="table-responsive p-0">
-								<table class="table align-items-center mb-0">
+								<table class="table align-items-center mb-0 table-hover">
 									<thead>
 										<tr>
 											<th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
@@ -60,28 +59,131 @@
 											</td>
 
 											<td class="align-middle">
-												<a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user"> Edit </a>
+												<a th:href="@{|/admin/product/details/${p.productId}|}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user"> Edit </a>
 											</td>
 										</tr>
 									</tbody>
 
+
 								</table>
-								<div class="card text-center">
-									<div class="card-body">
-										<a class="btn btn-primary" th:href="@{|/admin/product?pageCount=0|}">First</a>
-										<a class="btn btn-primary" th:href="@{|/admin/product?pageCount=${lstProductDto.number - 1}|}">Prev</a>
-										<a class="btn btn-primary" th:href="@{|/admin/product?pageCount=${lstProductDto.number + 1}|}">Next</a>
-										<a class="btn btn-primary" th:href="@{|/admin/product?pageCount=${lstProductDto.totalPages - 1}|}">Last</a>
-									</div>
+
+							</div>
+						</div>
+						<div class="card-footer">
+							<div class="text-center">
+								<div class="">
+									<a class="btn btn-primary" th:href="@{|/admin/product?pageCount=0|}">First</a>
+									<a class="btn btn-primary" th:href="@{|/admin/product?pageCount=${lstProductDto.number - 1}|}">Prev</a>
+									<a class="btn btn-primary" th:href="@{|/admin/product?pageCount=${lstProductDto.number + 1}|}">Next</a>
+									<a class="btn btn-primary" th:href="@{|/admin/product?pageCount=${lstProductDto.totalPages - 1}|}">Last</a>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+
 			</div>
 
-			<div class="tab-pane fade " id="pills-profile" role="tabpanel" aria-labelledby=" pills-profile-tab">ABC</div>
+
+			<!-- ------------------------- -->
+
+			<div class="tab-pane fade  container-fluid " th:classappend="${isHomeProduct} == 'tab2' ? 'show active' : ''" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+				<form method="post" th:action="@{|/admin/product/details|}" enctype="multipart/form-data" autocomplete="off">
+					<div class="row px-5 ">
+						<div class="col-6 pt-3">
+							<div>
+								<img id="prodimg" th:src="@{|/upload/product/${modelProduct.oneImage}|}" alt="prod-img" class="img-fluid" />
+							</div>
+							<div class="p-0 mt-2">
+								<img style="border: 1px solid black; margin-right: 10px" th:each="im : ${lstImages}" th:src="@{|/upload/product/${im.name}|}" th:attr="onclick=|changeImg('${im.name}')|" alt="" width="70px" height="70px" />
+							</div>
+							<div>
+								<label class="custom-file-upload">
+									<input multiple accept="image/*" onchange="uploadImage(this.files,event)" type="file" name="inputPhoto" class="custom-file-input1" id="inputPhoto" aria-describedby="inputGroupFileAddon01">
+									Upload Image
+								</label>
+							</div>
+						</div>
+						<div class="col-6">
+							<div class="input-group input-group-outline my-3 is-filled focused is-focused">
+								<label class="form-label">Product Name</label>
+								<input type="text" id="prodName" name="prodName" class="form-control" th:value="${modelProduct.productName}">
+							</div>
+
+							<div class="input-group input-group-outline my-3 is-filled focused is-focused">
+								<label class="form-label">Brand</label>
+								<!-- <input type="email" class="form-control" th:value="${modelProduct.brandName}"> -->
+								<select class="form-control " name="prodBrand" id="prodBrand">
+									<option th:each="brand : ${lstBrand}" th:value="${brand.id}" th:selected="${brand.name == modelProduct.brandName} ? true : false ">[[${brand.name}]]</option>
+								</select>
+							</div>
+
+							<div class="input-group input-group-outline my-3 is-filled focused is-focused">
+								<label class="form-label">Category</label>
+								<!-- <input type="email" class="form-control" th:value="${modelProduct.categoryName}"> -->
+								<select class="form-control" name="prodCat" id="prodCat">
+									<option th:each="cat : ${lstCat}" th:value="${cat.id}" th:selected="${cat.name == modelProduct.categoryName} ? true : false ">[[${cat.name}]]</option>
+								</select>
+							</div>
+
+							<div class="input-group input-group-outline my-3 is-filled focused is-focused">
+								<label class="form-label">Price</label>
+								<input type="text" id="prodPrice" name="prodPrice" class="form-control" th:value="${modelProduct.productPrice}">
+
+							</div>
+
+							<div class="form-check form-switch ps-0">
+								<input class="form-check-input ms-auto" type="checkbox" id="flexSwitchCheckDefault" checked="">
+								<label class="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="flexSwitchCheckDefault">Active</label>
+							</div>
+
+							<th:block th:if="${modelProduct.categoryName} == 'Laptop'">
+								<div class="input-group input-group-outline my-3 is-filled focused is-focused">
+									<label class="form-label">Touchpad</label>
+									<input type="text" class="form-control" th:value="${modelProduct.productName}">
+								</div>
+								<div class="input-group input-group-outline my-3 is-filled focused is-focused">
+									<label class="form-label">CPU</label>
+									<input type="text" class="form-control" th:value="${modelProduct.productName}">
+								</div>
+							</th:block>
+
+						</div>
+					</div>
+					<div class="text-center">
+						<button class="btn btn-primary" formaction="/admin/product/details/insert">Create</button>
+						<button class="btn btn-warning">Update</button>
+						<button class="btn btn-danger">Delete</button>
+						<button class="btn btn-success">Reset</button>
+					</div>
+				</form>
+			</div>
 		</div>
+
+		<script>
+			function tabChanged() {
+				$(".nav-tabs a:eq(1)").tab('show');
+			}
+
+			function changeImg(filename) {
+				var imgtag = document.getElementById("prodimg");
+				imgtag.src = "/upload/product/" + filename;
+			}
+
+			function uploadImage(files, event) {
+				var selectedFile = event.target.files[0];
+				var reader = new FileReader();
+				var imgtag = document.getElementById("prodimg");
+				imgtag.title = selectedFile.name;
+				reader.onload = function(event) {
+					imgtag.src = event.target.result;
+				};
+				reader.readAsDataURL(selectedFile);
+			}
+		</script>
+
+
+
 	</main>
 </body>
 </html>
