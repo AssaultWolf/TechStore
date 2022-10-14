@@ -23,7 +23,7 @@ public interface ProductDao extends JpaRepository<Products, Integer>{
 			+ "INNER JOIN p.brandid pb "
 			+ "GROUP BY p.id, p.name, p.currentprice, p.createddate, c.id, "
 			+ "c.name, pd.discount, pd.enddate, p.isdeleted, pb.name "
-			+ "ORDER BY p.createddate ")
+			+ "ORDER BY c.id, p.id ")
 	public Page<ProductDto> findAllProduct(Pageable pageable);
 	
 	@Query("SELECT new com.example.sale.dto.ProductDto( "
@@ -38,7 +38,7 @@ public interface ProductDao extends JpaRepository<Products, Integer>{
 			+ "WHERE p.id = ?1 "
 			+ "GROUP BY p.id, p.name, p.currentprice, p.createddate, c.id, "
 			+ "c.name, pd.discount, pd.enddate, p.isdeleted, pb.name "
-			+ "ORDER BY p.createddate ")
+			+ "ORDER BY p.name ")
 	public ProductDto findProductDtoById(Integer id);
 	
 }	

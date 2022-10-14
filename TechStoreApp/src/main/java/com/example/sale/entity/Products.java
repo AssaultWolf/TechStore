@@ -51,10 +51,11 @@ public class Products implements Serializable {
     @Column(name = "currentprice")
     private Double currentprice;
     
+   
+    
     @Column(name = "createddate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createddate;
-
     
     @Column(name = "isdeleted")
     private boolean isdeleted;

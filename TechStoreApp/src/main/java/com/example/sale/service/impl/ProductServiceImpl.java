@@ -1,5 +1,9 @@
 package com.example.sale.service.impl;
 
+
+import java.text.ParseException;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -35,8 +39,11 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public Products save(Products product) {
+	public Products save(Products product) throws ParseException {
 		// TODO Auto-generated method stub
+		 
+		Date militime = new Date(System.currentTimeMillis());
+		product.setCreateddate(militime);
 		return pDao.save(product);
 	}
 
@@ -44,6 +51,22 @@ public class ProductServiceImpl implements ProductService{
 	public void delete(Products product) {
 		// TODO Auto-generated method stub
 		pDao.deleteById(product.getId());
+	}
+
+	@Override
+	public void updateAciveFlagFalse(Integer id) {
+		// TODO Auto-generated method stub
+		Products p = pDao.findById(id).get();
+		p.setIsdeleted(false);
+		pDao.save(p);
+	}
+
+	@Override
+	public void updateAciveFlagTrue(Integer id) {
+		// TODO Auto-generated method stub
+		Products p = pDao.findById(id).get();
+		p.setIsdeleted(true);
+		pDao.save(p);
 	}
 
 }

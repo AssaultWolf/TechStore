@@ -20,7 +20,6 @@ public class ProductDto {
 	private Integer discountPercent;
 	private Date discountEndDate;
 	private Double avgRate;
-	private Boolean isActive;
+	private Boolean isDeleted;
 	private String brandName;
-
 }
