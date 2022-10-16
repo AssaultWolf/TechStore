@@ -3,9 +3,9 @@
 <body>
 	<main>
 		<nav>
-			<div class="nav nav-tabs" id="nav-tab" role="tablist">
-				<a class="nav-link " th:classappend="${isHomeProduct} == 'tab1' ? 'active' : ''" id="nav-home-tab" data-toggle="tab" data-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Product List</a>
-				<a class="nav-link " th:classappend="${isHomeProduct} == 'tab2' ? 'active' : ''" id="nav-profile-tab" data-toggle="tab" data-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Product Detail</a>
+			<div class="nav nav-tabs"   style="padding-bottom: 7px;" id="nav-tab" role="tablist">
+				<a class="nav-link text-uppercase" th:classappend="${isHomeProduct} == 'tab1' ? 'active' : ''" id="nav-home-tab" data-toggle="tab" data-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Product List</a>
+				<a class="nav-link text-uppercase" th:classappend="${isHomeProduct} == 'tab2' ? 'active' : ''" id="nav-profile-tab" data-toggle="tab" data-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Product Detail</a>
 			</div>
 		</nav>
 		<div class="tab-content container" id="nav-tabContent">
@@ -14,8 +14,8 @@
 				<div class="col-12">
 					<div class="card my-4">
 						<div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-							<div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-								<h6 class="text-white text-capitalize ps-3">Product List</h6>
+							<div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3 mt-2">
+								<h4 class="text-white text-capitalize ps-3 text-center ">PRODUCT LIST</h4>
 							</div>
 						</div>
 						<div class="card-body px-0 pb-2" style="min-height: 307px">
