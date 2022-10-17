@@ -17,6 +17,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,26 +27,27 @@ import lombok.NoArgsConstructor;
  *
  * @author paras
  */
-@Entity
-@Table(name = "categories")
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Entity
+@Table(name = "categories")
 public class Categories implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(name = "id")
     private Integer id;
 
-
-
     @Column(name = "name")
     private String name;
+    
     @Column(name = "isdeleted")
     private Boolean isdeleted;
+    
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryid")
     private Collection<Products> productsCollection;
 //

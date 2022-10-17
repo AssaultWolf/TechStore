@@ -3,6 +3,8 @@ package com.example.sale.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.sale.dao.CategoryDao;
@@ -27,4 +29,10 @@ public class CategoryServiceImpl implements CategoryService{
 		return cDao.findById(id).get();
 	}
 
+	@Override
+	public Page<Categories> findAllCategory(Pageable pageable) {
+		// TODO Auto-generated method stub
+		return cDao.findAllCategory(pageable);
+	}
+	
 }
