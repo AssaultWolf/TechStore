@@ -61,7 +61,7 @@ public class CategoriesManagement {
 		return "admin/category/categoryManagement";
 	}
 
-	@GetMapping("/admin/category/details/{id}")
+	@GetMapping("/admin/categories/details/{id}")
 	public String categoryDetailsMng(Model model, @PathVariable("id") Integer id, HttpServletRequest request) {
 		model.addAttribute("isEdit", true);
 		checkTab = true;
